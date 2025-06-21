@@ -14,8 +14,8 @@ services:
   run_command: heroku-php-apache2 public/
   source_dir: /
 databases:
-- engine: MYSQL
+- engine: PG
   name: ensa-lost-found-db
   num_nodes: 1
   size: db-s-dev-database
-  version: "8"
+  version: "12"
