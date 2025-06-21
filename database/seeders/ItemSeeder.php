@@ -15,8 +15,7 @@ class ItemSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
-     */
-    public function run()
+     */    public function run()
     {
         // Get users and categories
         $users = User::all();
@@ -26,6 +25,14 @@ class ItemSeeder extends Seeder
         $accessories = Category::where('name', 'Accessories')->first();
         $documents = Category::where('name', 'Documents')->first();
         $other = Category::where('name', 'Other')->first();
+
+        // Check if categories exist
+        if (!$electronics || !$books || !$clothing || !$accessories || !$documents || !$other) {
+            $this->command->error('Some categories are missing! Please run CategorySeeder first.');
+            return;
+        }
+
+        $this->command->info('All categories found. Proceeding with item creation...');
 
         // ENSA Tangier locations
         $locations = [

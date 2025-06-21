@@ -14,9 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            CategorySeeder::class,
-        ]);
+        // First, seed categories
+        $this->call(CategorySeeder::class);
+        
+        // Verify categories were created
+        $categoryCount = \App\Models\Category::count();
+        $this->command->info("Categories created: {$categoryCount}");
+        
+        if ($categoryCount === 0) {
+            $this->command->error("No categories were created! ItemSeeder will fail.");
+            return;
+        }
 
         // Create a test admin user
         \App\Models\User::firstOrCreate(
@@ -43,9 +51,11 @@ class DatabaseSeeder extends Seeder
         // Create some additional users for items
         \App\Models\User::factory(8)->create();
 
-        // Seed items after users are created
-        $this->call([
-            ItemSeeder::class,
-        ]);
+        // Verify users were created
+        $userCount = \App\Models\User::count();
+        $this->command->info("Users created: {$userCount}");
+
+        // Seed items after users and categories are created
+        $this->call(ItemSeeder::class);
     }
 }

@@ -49,10 +49,13 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            Category::firstOrCreate(
+            $createdCategory = Category::firstOrCreate(
                 ['name' => $category['name']],
                 $category
             );
+            $this->command->info("Category created/found: {$createdCategory->name}");
         }
+        
+        $this->command->info("Total categories in database: " . Category::count());
     }
 }
