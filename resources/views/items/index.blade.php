@@ -91,10 +91,16 @@
                     @foreach($items as $item)
                         <div class="glass-effect rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100 group">                            @if($item->images && count($item->images) > 0)
                                 <div class="relative overflow-hidden">
+                                    <!-- Debug: Show the image URL -->
+                                    @if(config('app.debug'))
+                                        <div class="absolute top-0 left-0 bg-black bg-opacity-75 text-white text-xs p-1 z-10">
+                                            URL: {{ Storage::url($item->images[0]) }}
+                                        </div>
+                                    @endif
                                     <img src="{{ Storage::url($item->images[0]) }}" 
                                          alt="{{ $item->title }}" 
                                          class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.parentElement.innerHTML='<div class=\'h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center\'><div class=\'text-center\'><div class=\'text-4xl text-gray-400 mb-2\'>📷</div><p class=\'text-sm text-gray-500\'>Image not found</p></div></div>';">
+                                         onerror="console.log('Image failed to load:', this.src); this.parentElement.innerHTML='<div class=\'h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center\'><div class=\'text-center\'><div class=\'text-4xl text-gray-400 mb-2\'>📷</div><p class=\'text-sm text-gray-500\'>Image not found</p><p class=\'text-xs text-gray-400\'>' + this.src + '</p></div></div>';">
                                     <div class="absolute top-4 right-4">
                                         <span class="px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-sm border {{ $item->type == 'lost' ? 'bg-red-100/90 text-red-800 border-red-200' : 'bg-green-100/90 text-green-800 border-green-200' }}">
                                             {{ $item->type == 'lost' ? '🔍 Lost' : '✅ Found' }}
