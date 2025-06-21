@@ -126,7 +126,7 @@
                         </div>
                         
                         <div class="flex items-center space-x-4">
-                            <a href="https://drive.google.com/drive/u/0/home" 
+                            <a href="https://drive.google.com/file/d/1R7US8Zsi7cxH2-fc9AObroWojF5rnqxz/view?usp=sharing" 
                                target="_blank" 
                                class="inline-flex items-center px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-white font-medium transition-all duration-200 hover:scale-105 backdrop-blur-sm border border-white/20">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
