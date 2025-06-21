@@ -19,11 +19,14 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
+# Create storage symlink for file uploads
+echo "🔗 Creating storage symlink..."
+php artisan storage:link
+
 # Run database migrations
 echo "🗄️ Running database migrations..."
 php artisan migrate --force
 
-# Seed database if needed (only on first deployment)
 # php artisan db:seed --force
 
 echo "✅ Deployment completed successfully!"

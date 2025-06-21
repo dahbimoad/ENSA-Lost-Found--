@@ -89,10 +89,12 @@
             @if($items->count() > 0)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($items as $item)
-                        <div class="glass-effect rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100 group">
-                            @if($item->images && count($item->images) > 0)
+                        <div class="glass-effect rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100 group">                            @if($item->images && count($item->images) > 0)
                                 <div class="relative overflow-hidden">
-                                    <img src="{{ Storage::url($item->images[0]) }}" alt="{{ $item->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <img src="{{ Storage::url($item->images[0]) }}" 
+                                         alt="{{ $item->title }}" 
+                                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                         onerror="this.parentElement.innerHTML='<div class=\'h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center\'><div class=\'text-center\'><div class=\'text-4xl text-gray-400 mb-2\'>📷</div><p class=\'text-sm text-gray-500\'>Image not found</p></div></div>';">
                                     <div class="absolute top-4 right-4">
                                         <span class="px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-sm border {{ $item->type == 'lost' ? 'bg-red-100/90 text-red-800 border-red-200' : 'bg-green-100/90 text-green-800 border-green-200' }}">
                                             {{ $item->type == 'lost' ? '🔍 Lost' : '✅ Found' }}
